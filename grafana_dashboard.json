@@ -22,9 +22,91 @@
     "gnetId": null,
     "graphTooltip": 0,
     "id": 1,
-    "iteration": 1629604426195,
+    "iteration": 1629643477443,
     "links": [],
     "panels": [
+      {
+        "datasource": "OpenSea Assets API",
+        "description": "",
+        "gridPos": {
+          "h": 13,
+          "w": 6,
+          "x": 0,
+          "y": 0
+        },
+        "id": 6,
+        "options": {
+          "alt_field": "",
+          "height": "75",
+          "icon_field": "image_original_url",
+          "overlay": {
+            "bindings": {
+              "bindings": [],
+              "has_text": true,
+              "unbounded": "#66666620"
+            },
+            "field": "",
+            "height": {
+              "size": 5,
+              "unit": "%"
+            },
+            "position": "Top right",
+            "width": {
+              "size": 5,
+              "unit": "%"
+            }
+          },
+          "singleFill": true,
+          "tooltip": false,
+          "tooltip_date_elapsed": false,
+          "tooltip_field": "",
+          "tooltip_include_date": false,
+          "tooltip_include_field": true,
+          "underline": {
+            "field": "",
+            "text_size": "14"
+          },
+          "width": "75"
+        },
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "fields": [
+              {
+                "jsonPath": "$.assets[*].image_original_url"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              [
+                "asset_contract_address",
+                "${address}"
+              ],
+              [
+                "token_ids",
+                "${opensea_assets}"
+              ],
+              [
+                "only_opensea",
+                "false"
+              ],
+              [
+                "offset",
+                "0"
+              ],
+              [
+                "limit",
+                "50"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "IMAGE",
+            "urlPath": ""
+          }
+        ],
+        "title": "${opensea_assets} Artwork",
+        "type": "dalvany-image-panel"
+      },
       {
         "datasource": "-- Mixed --",
         "description": "",
@@ -80,9 +162,9 @@
           "overrides": []
         },
         "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
+          "h": 13,
+          "w": 8,
+          "x": 6,
           "y": 0
         },
         "id": 2,
@@ -122,11 +204,11 @@
             "params": [
               [
                 "asset_contract_address",
-                "0xc36cf0cfcb5d905b8b513860db0cfe63f6cf9f5c"
+                "${address}"
               ],
               [
                 "token_id",
-                "${aaelims_opensea_assets}"
+                "${opensea_assets}"
               ],
               [
                 "event_type",
@@ -174,11 +256,11 @@
             "params": [
               [
                 "asset_contract_address",
-                "0xc36cf0cfcb5d905b8b513860db0cfe63f6cf9f5c"
+                "${address}"
               ],
               [
                 "token_id",
-                "${aaelims_opensea_assets}"
+                "${opensea_assets}"
               ],
               [
                 "event_type",
@@ -226,11 +308,11 @@
             "params": [
               [
                 "asset_contract_address",
-                "0xc36cf0cfcb5d905b8b513860db0cfe63f6cf9f5c"
+                "${address}"
               ],
               [
                 "token_id",
-                "${aaelims_opensea_assets}"
+                "${opensea_assets}"
               ],
               [
                 "event_type",
@@ -254,7 +336,7 @@
             "urlPath": ""
           }
         ],
-        "title": "OpenSea ${aaelims_opensea_assets} Sales Events",
+        "title": "OpenSea ${opensea_assets} Sales Events",
         "transformations": [
           {
             "id": "calculateField",
@@ -457,10 +539,10 @@
           ]
         },
         "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 0
+          "h": 9,
+          "w": 14,
+          "x": 0,
+          "y": 13
         },
         "id": 4,
         "options": {
@@ -572,21 +654,43 @@
     "templating": {
       "list": [
         {
-          "allValue": null,
           "current": {
             "selected": true,
-            "text": "Dragon Voucher 7/10",
-            "value": "127946169962272862262228852394344847507456"
+            "text": "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c",
+            "value": "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c"
           },
-          "datasource": "OpenSea Assets API",
-          "definition": "$.assets[*].token_id",
           "description": null,
           "error": null,
           "hide": 0,
+          "label": "Address",
+          "name": "address",
+          "options": [
+            {
+              "selected": true,
+              "text": "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c",
+              "value": "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c"
+            }
+          ],
+          "query": "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c",
+          "skipUrlSync": false,
+          "type": "textbox"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "Dragon Voucher 8/10",
+            "value": "131689275998403185360325973076094297833472"
+          },
+          "datasource": "OpenSea Assets API",
+          "definition": "$.assets[*].token_id",
+          "description": "The assets at the specified wallet address",
+          "error": null,
+          "hide": 0,
           "includeAll": false,
-          "label": "Aaelim's Assets",
+          "label": "Assets",
           "multi": false,
-          "name": "aaelims_opensea_assets",
+          "name": "opensea_assets",
           "options": [],
           "query": {
             "cacheDurationSeconds": 300,
@@ -608,15 +712,7 @@
             "params": [
               [
                 "asset_contract_address",
-                "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c"
-              ],
-              [
-                "token_id",
-                "46958966635089507957945695825584013180928"
-              ],
-              [
-                "event_type",
-                "successful"
+                "${address}"
               ],
               [
                 "only_opensea",
@@ -649,6 +745,6 @@
     "timepicker": {},
     "timezone": "",
     "title": "OpenSea",
-    "uid": "YswBAyn7z",
+    "uid": "saBn_Qn7k",
     "version": 9
   }
