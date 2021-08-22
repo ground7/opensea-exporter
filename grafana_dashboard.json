@@ -1,0 +1,654 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 1,
+    "iteration": 1629604426195,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "-- Mixed --",
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "Dolla Billz",
+              "axisPlacement": "left",
+              "axisSoftMin": 0,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "stepBefore",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": "OpenSea Event API",
+            "fields": [
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == (\"USDC\" || \"DAI\"))].total_price",
+                "name": "usdc_raw_price",
+                "type": "number"
+              },
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == (\"USDC\" || \"DAI\"))].transaction.timestamp",
+                "name": "usdc_timestamp",
+                "type": "time"
+              },
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == (\"USDC\" || \"DAI\"))].payment_token.usd_price",
+                "name": "usdc_usd_price",
+                "type": "number"
+              }
+            ],
+            "hide": false,
+            "method": "GET",
+            "params": [
+              [
+                "asset_contract_address",
+                "0xc36cf0cfcb5d905b8b513860db0cfe63f6cf9f5c"
+              ],
+              [
+                "token_id",
+                "${aaelims_opensea_assets}"
+              ],
+              [
+                "event_type",
+                "successful"
+              ],
+              [
+                "only_opensea",
+                "false"
+              ],
+              [
+                "offset",
+                "0"
+              ],
+              [
+                "limit",
+                "50"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "USDC",
+            "urlPath": ""
+          },
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": "OpenSea Event API",
+            "fields": [
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == (\"ETH\" || \"WETH\"))].total_price",
+                "name": "eth_raw_price",
+                "type": "number"
+              },
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == (\"ETH\" || \"WETH\"))].transaction.timestamp",
+                "name": "eth_timestamp",
+                "type": "time"
+              },
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == (\"ETH\" || \"WETH\"))].payment_token.usd_price",
+                "name": "eth_usd_price",
+                "type": "number"
+              }
+            ],
+            "hide": false,
+            "method": "GET",
+            "params": [
+              [
+                "asset_contract_address",
+                "0xc36cf0cfcb5d905b8b513860db0cfe63f6cf9f5c"
+              ],
+              [
+                "token_id",
+                "${aaelims_opensea_assets}"
+              ],
+              [
+                "event_type",
+                "successful"
+              ],
+              [
+                "only_opensea",
+                "false"
+              ],
+              [
+                "offset",
+                "0"
+              ],
+              [
+                "limit",
+                "50"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "ETH",
+            "urlPath": ""
+          },
+          {
+            "cacheDurationSeconds": 300,
+            "datasource": "OpenSea Event API",
+            "fields": [
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == \"GALA\")].total_price",
+                "name": "gala_raw_price",
+                "type": "number"
+              },
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == \"GALA\")].transaction.timestamp",
+                "name": "gala_timestamp",
+                "type": "time"
+              },
+              {
+                "jsonPath": "$.asset_events[?(@.payment_token.symbol == \"GALA\")].payment_token.usd_price",
+                "name": "gala_usd_price",
+                "type": "number"
+              }
+            ],
+            "hide": false,
+            "method": "GET",
+            "params": [
+              [
+                "asset_contract_address",
+                "0xc36cf0cfcb5d905b8b513860db0cfe63f6cf9f5c"
+              ],
+              [
+                "token_id",
+                "${aaelims_opensea_assets}"
+              ],
+              [
+                "event_type",
+                "successful"
+              ],
+              [
+                "only_opensea",
+                "false"
+              ],
+              [
+                "offset",
+                "0"
+              ],
+              [
+                "limit",
+                "50"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "GALA",
+            "urlPath": ""
+          }
+        ],
+        "title": "OpenSea ${aaelims_opensea_assets} Sales Events",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "normalized_uscd_price",
+              "binary": {
+                "left": "USDC usdc_raw_price",
+                "operator": "/",
+                "reducer": "sum",
+                "right": "1000000"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "usd_price",
+              "binary": {
+                "left": "USDC normalized_uscd_price",
+                "operator": "*",
+                "reducer": "sum",
+                "right": "USDC usdc_usd_price"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "normalized_eth_price",
+              "binary": {
+                "left": "ETH eth_raw_price",
+                "operator": "/",
+                "reducer": "sum",
+                "right": "1000000000000000000"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "usd_price",
+              "binary": {
+                "left": "ETH normalized_eth_price",
+                "operator": "*",
+                "reducer": "sum",
+                "right": "ETH eth_usd_price"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "normalized_gala_price",
+              "binary": {
+                "left": "GALA gala_raw_price",
+                "operator": "/",
+                "reducer": "sum",
+                "right": "100000000"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          },
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "usd_price",
+              "binary": {
+                "left": "GALA normalized_gala_price",
+                "operator": "*",
+                "reducer": "sum",
+                "right": "GALA gala_usd_price"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": true
+            }
+          },
+          {
+            "id": "seriesToRows",
+            "options": {}
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "Metric": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "Metric": "",
+                "Value": "Asset Value"
+              }
+            }
+          }
+        ],
+        "type": "timeseries"
+      },
+      {
+        "datasource": "CryptoWatch Markets API",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisLabel": "Muney",
+              "axisPlacement": "left",
+              "axisSoftMin": 0,
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "__systemRef": "hideSeriesFrom",
+              "matcher": {
+                "id": "byNames",
+                "options": {
+                  "mode": "exclude",
+                  "names": [
+                    "GALAUSD"
+                  ],
+                  "prefix": "All except:",
+                  "readOnly": true
+                }
+              },
+              "properties": [
+                {
+                  "id": "custom.hideFrom",
+                  "value": {
+                    "legend": false,
+                    "tooltip": false,
+                    "viz": true
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "tooltip": {
+            "mode": "single"
+          }
+        },
+        "targets": [
+          {
+            "cacheDurationSeconds": 300,
+            "fields": [
+              {
+                "jsonPath": "$.result.86400[*].0",
+                "name": "",
+                "type": "time"
+              },
+              {
+                "jsonPath": "$.result.86400[*].4",
+                "name": "",
+                "type": "number"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              [
+                "periods",
+                "86400"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "ETHUSD",
+            "urlPath": "/kraken/ethusd/ohlc"
+          },
+          {
+            "cacheDurationSeconds": 300,
+            "fields": [
+              {
+                "jsonPath": "$.result.86400[*].0",
+                "name": "",
+                "type": "time"
+              },
+              {
+                "jsonPath": "$.result.86400[*].4",
+                "name": "",
+                "type": "number"
+              }
+            ],
+            "hide": false,
+            "method": "GET",
+            "params": [
+              [
+                "periods",
+                "86400"
+              ]
+            ],
+            "queryParams": "",
+            "refId": "GALAWETH",
+            "urlPath": "/uniswap-v2/galaweth/ohlc"
+          }
+        ],
+        "title": "CryptoWatch Markets",
+        "transformations": [
+          {
+            "id": "calculateField",
+            "options": {
+              "alias": "GALAUSD",
+              "binary": {
+                "left": "4 ETHUSD",
+                "operator": "*",
+                "reducer": "sum",
+                "right": "4 GALAWETH"
+              },
+              "mode": "binary",
+              "reduce": {
+                "reducer": "sum"
+              },
+              "replaceFields": false
+            }
+          },
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "0": false,
+                "  GALAWETH": true,
+                "4 GALAWETH": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "0": "Date",
+                "4 ETHUSD": "ETHUSD",
+                "GALAUSD": "GALAUSD"
+              }
+            }
+          }
+        ],
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 30,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "Dragon Voucher 7/10",
+            "value": "127946169962272862262228852394344847507456"
+          },
+          "datasource": "OpenSea Assets API",
+          "definition": "$.assets[*].token_id",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Aaelim's Assets",
+          "multi": false,
+          "name": "aaelims_opensea_assets",
+          "options": [],
+          "query": {
+            "cacheDurationSeconds": 300,
+            "experimentalVariableTextField": "Asset Name",
+            "experimentalVariableValueField": "Asset ID",
+            "fields": [
+              {
+                "jsonPath": "$.assets[*].token_id",
+                "name": "Asset ID",
+                "type": "string"
+              },
+              {
+                "jsonPath": "$.assets[*].name",
+                "name": "Asset Name",
+                "type": "string"
+              }
+            ],
+            "method": "GET",
+            "params": [
+              [
+                "asset_contract_address",
+                "0xc36cF0cFcb5d905B8B513860dB0CFE63F6Cf9F5c"
+              ],
+              [
+                "token_id",
+                "46958966635089507957945695825584013180928"
+              ],
+              [
+                "event_type",
+                "successful"
+              ],
+              [
+                "only_opensea",
+                "false"
+              ],
+              [
+                "offset",
+                "0"
+              ],
+              [
+                "limit",
+                "50"
+              ]
+            ],
+            "queryParams": "",
+            "urlPath": ""
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-90d",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "OpenSea",
+    "uid": "YswBAyn7z",
+    "version": 9
+  }
